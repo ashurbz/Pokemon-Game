@@ -3,10 +3,14 @@
 // pokemon.src = './pokemon.png';
 
 
-
+let counter=0;
 var myGamePiece;
-var balls=["ball1","ball2","ball3","ball4","ball5", "ball6","ball7","ball8","ball9","ball0"]
+var balls=[20];
+for(let ball=0; ball<2000; ball++){
+    balls[ball] = ball+"ball";
+}
 
+console.log(balls)
 
 function startGame() {
     myGameArea.start();
@@ -28,6 +32,7 @@ let arry = [];
     i++;
     let x = getRandomInt(8);
     let y= getRandomInt(5);
+    
     
     for(let m = 0; m<=arrx.length;m++){
        if(arrx[m] == x && arry[m] == y){
@@ -55,10 +60,10 @@ let arry = [];
     // myGamePiece1=  new componentBall(116, 116, "./pokeball.png", 120*(x), 120*(y),"image");
 
     // myGamePiece = new component(30, 30, "pokemon.png", 10, 120,"image");
-    if(i==10){
+    if(i==20000){
     clearInterval(as)}
    
-    }, 2000)
+    }, 1000)
     
     
  //  }
@@ -143,7 +148,8 @@ function componentBall(width, height, color, x, y,type) {
     }
     this.x = x;
     this.y = y;
-    this.update = function() {    
+    this.update = function() {  
+
     ctx = myGameArea.context;
     if (type == "image") {
         ctx.drawImage(this.image, 
@@ -161,18 +167,24 @@ function updateGameArea() {
     myGameArea.clear();
     myGamePiece.speedX = 0;
     myGamePiece.speedY = 0;    
-    if (myGameArea.key && myGameArea.key == 37) {myGamePiece.speedX = -2; }
-    if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 2; }
-    if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -2; }
-    if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 2; }
+    if (myGameArea.key && myGameArea.key == 37 && myGamePiece.x > 0) {myGamePiece.speedX = -4; }
+    if (myGameArea.key && myGameArea.key == 39 && myGamePiece.x < 960 -120) {myGamePiece.speedX = 4; }
+    if (myGameArea.key && myGameArea.key == 38 && myGamePiece.y > 0) {myGamePiece.speedY = -4; }
+    if (myGameArea.key && myGameArea.key == 40 && myGamePiece.y < 600-120 ) {myGamePiece.speedY = 4; }
     myGamePiece.newPos();    
    
-    for(let i =0; i<10;i++){
-        if(balls[i].update)
-        balls[i].update();
-    }
+    for(let i =0; i<1000;i++){
+        if( balls[i] && balls[i].update){
+              
+            balls[i].update();
+            if( (balls[i].x-myGamePiece.x >0  && balls[i].x-myGamePiece.x <= 60 &&  balls[i].y-myGamePiece.y <= 60 &&  balls[i].y-myGamePiece.y >0) || (balls[i].x-myGamePiece.x <0  && balls[i].x-myGamePiece.x > -60 &&  balls[i].y-myGamePiece.y > -60 &&  balls[i].y-myGamePiece.y <0)){
+                balls[i] = null;
+                counter++;
+            }
+    }}
    // myGamePiec.update();
-    
+     
+      
     myGamePiece.update();
 }
 
