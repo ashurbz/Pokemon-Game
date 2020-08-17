@@ -1,6 +1,7 @@
 body{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    flex-direction: row;
 }
 
 canvas{
@@ -8,6 +9,34 @@ canvas{
    
     border: 2px solid red;
     background-color: black;
-    margin: 8% 30% ;
     
+    
+}
+
+button{
+
+    border: 0;
+ color: white;
+ font-weight:bold ;
+ background-color: dodgerblue;
+ cursor: pointer;
+ outline: none;
+ box-shadow: 0 0 5px 2px dodgerblue;
+ padding: 10px;
+ width: 90vw;
+ height: 90vh;
+ font-size: xx-large;
+
+}
+#counter{
+    float: right;
+    
+}
+
+.hidden
+{
+    display: none;
+}
+show{
+    display: initial;
 }

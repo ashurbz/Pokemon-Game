@@ -4,15 +4,19 @@
 
 
 let counter=0;
+let gameover=false;
 var myGamePiece;
+let count=0;
 var balls=[20];
-for(let ball=0; ball<2000; ball++){
-    balls[ball] = ball+"ball";
-}
 
-console.log(balls)
+
+
 
 function startGame() {
+    for(let ball=0; ball<20; ball++){
+        balls[ball] = ball+"ball";
+    }
+    document.getElementById("counter").innerText="Score : "+counter;
     myGameArea.start();
     
    
@@ -29,12 +33,14 @@ let arry = [];
 }
      
     let as = setInterval(function(){
+     
     i++;
     let x = getRandomInt(8);
     let y= getRandomInt(5);
     
     
     for(let m = 0; m<=arrx.length;m++){
+      
        if(arrx[m] == x && arry[m] == y){
           console.log(true);
           i--;
@@ -48,20 +54,53 @@ let arry = [];
     
     
    
-   
+  console.log(counter);
  
-   
+    if(counter>0 && (counter%15===0)){
+        // console.log(balls);
+
+        i=0;
+        arrx =[];
+        arry =[];
+
+       
+    }
+
+      
    
   
   
-   
+    console.log(count)
   
     balls[i] = new componentBall(116, 116, "./pokeball.png", 120*(x), 120*(y),"image");
+    
     // myGamePiece1=  new componentBall(116, 116, "./pokeball.png", 120*(x), 120*(y),"image");
 
     // myGamePiece = new component(30, 30, "pokemon.png", 10, 120,"image");
-    if(i==20000){
-    clearInterval(as)}
+    if(gameover){
+        let a=5;
+        
+     function show(){
+        document.getElementById('time').innerText=a--;
+     }
+        
+        document.getElementById("counter").innerText="Game Over !!! Your Score Is "+counter+" New Game Starting in ...";
+        setInterval(function(){
+          show();
+        },1000);
+        document.getElementsByTagName("canvas")[0].className="hidden";
+        // document.getElementsByTagName("button")[0].className="show";
+        document.getElementsByTagName("h1")[0].className="show";
+    
+     setTimeout(function(){
+        location.reload();
+
+     },5000)   
+        
+          
+        clearInterval(as)
+        
+}
    
     }, 1000)
     
@@ -71,6 +110,9 @@ let arry = [];
     
 
 
+
+document.getElementsByTagName("button")[0].className="hidden";
+document.getElementsByTagName("h1")[0].className="show";
 
 
 
@@ -89,11 +131,13 @@ myGamePiece=new component(120, 120, "./pokemon.png", 10, 120,"image");
 
 var myGameArea = {
     canvas : document.createElement("canvas"),
+
     start : function() {
+       
         this.canvas.width = 960;
         this.canvas.height = 600;
         this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        document.getElementById("div").insertBefore(this.canvas, document.getElementById("div").childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
         window.addEventListener('keydown', function (e) {
             myGameArea.key = e.keyCode;
@@ -101,6 +145,7 @@ var myGameArea = {
         window.addEventListener('keyup', function (e) {
             myGameArea.key = false;
         })
+        document.getElementsByTagName("canvas")[0].className="show";
        
     },  clear : function(){
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -110,6 +155,7 @@ var myGameArea = {
 
 function component(width, height, color, x, y,type) {
     this.gamearea = myGameArea;
+    
     this.type = type;
     if (type == "image") {
         this.image = new Image();
@@ -172,15 +218,22 @@ function updateGameArea() {
     if (myGameArea.key && myGameArea.key == 38 && myGamePiece.y > 0) {myGamePiece.speedY = -4; }
     if (myGameArea.key && myGameArea.key == 40 && myGamePiece.y < 600-120 ) {myGamePiece.speedY = 4; }
     myGamePiece.newPos();    
-   
-    for(let i =0; i<1000;i++){
-        if( balls[i] && balls[i].update){
-              
-            balls[i].update();
-            if( (balls[i].x-myGamePiece.x >0  && balls[i].x-myGamePiece.x <= 60 &&  balls[i].y-myGamePiece.y <= 60 &&  balls[i].y-myGamePiece.y >0) || (balls[i].x-myGamePiece.x <0  && balls[i].x-myGamePiece.x > -60 &&  balls[i].y-myGamePiece.y > -60 &&  balls[i].y-myGamePiece.y <0)){
-                balls[i] = null;
+     count=0;
+    for(let j =0; j<20;j++){
+           
+        if( balls[j] && balls[j].update){
+               count++;
+            balls[j].update();
+            if( (balls[j].x-myGamePiece.x >-30  && balls[j].x-myGamePiece.x <= 30 &&  balls[j].y-myGamePiece.y <= 30 &&  balls[j].y-myGamePiece.y >-30) ){
+                
+                balls[j] = "A";
                 counter++;
+                count--;
+                document.getElementById("counter").innerText="Score : "+counter;
             }
+            if(count==10)
+            gameover=true;
+
     }}
    // myGamePiec.update();
      
@@ -189,7 +242,7 @@ function updateGameArea() {
 }
 
 
-startGame();
+
 
 
 
