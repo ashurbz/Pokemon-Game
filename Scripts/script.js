@@ -5,6 +5,8 @@ var myGamePiece;
 let count=0;
 var balls=[20];
 
+// Start game
+
 function startGame() {
     for(let ball=0; ball<20; ball++){
         balls[ball] = ball+"ball";
@@ -16,11 +18,13 @@ let arrx = [];
 let arry = [];
 
    let i=0;
+
+   // random number of balls
    
       function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
-     
+     // interval of time 
     let as = setInterval(function(){
      
     i++;
@@ -42,7 +46,7 @@ let arry = [];
     arry.push(y);
     
     
-   
+   // counter for score
   console.log(counter);
  
     if(counter>0 && (counter%15===0)){
@@ -55,6 +59,8 @@ let arry = [];
     }
   
     console.log(count)
+
+    // pokeball image
   
     balls[i] = new componentBall(116, 116, "./Images/pokeball.png", 120*(x), 120*(y),"image");
     if(gameover){
@@ -71,7 +77,8 @@ let arry = [];
        cele.innerHTML="Game Over !!! <br> Your Score Is "+counter+ "<br> New Game Starting in ...";
 
        cele.style.float="none"
-       
+    
+       // setting countdown meter
         
         setInterval(function(){
           show();
@@ -102,6 +109,7 @@ document.getElementsByTagName("h1")[0].className="show";
 
 
 }
+// pokemon image
 myGamePiece=new component(120, 120, "./Images/pokemon.png", 10, 120,"image");
 
 
@@ -109,6 +117,8 @@ var myGameArea = {
     canvas : document.createElement("canvas"),
 
     start : function() {
+
+        // using arrow keys
        
         this.canvas.width = 960;
         this.canvas.height = 600;
