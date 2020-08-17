@@ -1,8 +1,13 @@
-#canvas{
-    height: 600px;
-    width: 800px;
+body{
+    display: flex;
+    justify-content: space-between;
+}
+
+canvas{
+    
+   
     border: 2px solid red;
     background-color: black;
-    /* margin: 8% 30% ; */
+    margin: 8% 30% ;
     
 }
