@@ -5,11 +5,14 @@
 
 
 var myGamePiece;
-var myGamePiec;
+var balls=["ball1","ball2","ball3","ball4","ball5", "ball6","ball7","ball8","ball9","ball0"]
+
 
 function startGame() {
     myGameArea.start();
-    myGamePiec= new componentBall(120, 120, "./pokemon.png", 10, 120,"image");
+    
+   
+
     
 let arrx = [];
 let arry = [];
@@ -48,9 +51,11 @@ let arry = [];
   
    
   
-    myGamePiec = new componentBall(116, 116, "./pokeball.png", 120*(x), 120*(y),"image")
+    balls[i] = new componentBall(116, 116, "./pokeball.png", 120*(x), 120*(y),"image");
+    // myGamePiece1=  new componentBall(116, 116, "./pokeball.png", 120*(x), 120*(y),"image");
+
     // myGamePiece = new component(30, 30, "pokemon.png", 10, 120,"image");
-    if(i==40){
+    if(i==10){
     clearInterval(as)}
    
     }, 2000)
@@ -66,6 +71,16 @@ let arry = [];
 
 
 }
+myGamePiece=new component(120, 120, "./pokemon.png", 10, 120,"image");
+
+
+
+
+
+
+
+
+
 
 var myGameArea = {
     canvas : document.createElement("canvas"),
@@ -81,10 +96,11 @@ var myGameArea = {
         window.addEventListener('keyup', function (e) {
             myGameArea.key = false;
         })
-    }, 
-    clear : function(){
+       
+    },  clear : function(){
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
+  
 }
 
 function component(width, height, color, x, y,type) {
@@ -126,7 +142,8 @@ function componentBall(width, height, color, x, y,type) {
         this.image.src = color;
     }
     this.x = x;
-    this.y = y;    
+    this.y = y;
+    this.update = function() {    
     ctx = myGameArea.context;
     if (type == "image") {
         ctx.drawImage(this.image, 
@@ -136,19 +153,26 @@ function componentBall(width, height, color, x, y,type) {
     } else {
         ctx.fillStyle = color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
-    }
+    }}
   
 }
 
 function updateGameArea() {
-    // myGameArea.clear();
+    myGameArea.clear();
     myGamePiece.speedX = 0;
     myGamePiece.speedY = 0;    
-    if (myGameArea.key && myGameArea.key == 37) {myGamePiece.speedX = -1; }
-    if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 1; }
-    if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -1; }
-    if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 1; }
+    if (myGameArea.key && myGameArea.key == 37) {myGamePiece.speedX = -2; }
+    if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 2; }
+    if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -2; }
+    if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 2; }
     myGamePiece.newPos();    
+   
+    for(let i =0; i<10;i++){
+        if(balls[i].update)
+        balls[i].update();
+    }
+   // myGamePiec.update();
+    
     myGamePiece.update();
 }
 
