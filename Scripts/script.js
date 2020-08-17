@@ -1,16 +1,9 @@
-// let canvas = document.getElementById('canvas');
-// let pokemon = new Image();
-// pokemon.src = './pokemon.png';
-
 
 let counter=0;
 let gameover=false;
 var myGamePiece;
 let count=0;
 var balls=[20];
-
-
-
 
 function startGame() {
     for(let ball=0; ball<20; ball++){
@@ -19,13 +12,9 @@ function startGame() {
     document.getElementById("counter").innerText="Score : "+counter;
     myGameArea.start();
     
-   
-
-    
 let arrx = [];
 let arry = [];
 
-   // for(let i = 0; i<20; i++){
    let i=0;
    
       function getRandomInt(max) {
@@ -57,7 +46,6 @@ let arry = [];
   console.log(counter);
  
     if(counter>0 && (counter%15===0)){
-        // console.log(balls);
 
         i=0;
         arrx =[];
@@ -65,31 +53,30 @@ let arry = [];
 
        
     }
-
-      
-   
-  
   
     console.log(count)
   
-    balls[i] = new componentBall(116, 116, "./pokeball.png", 120*(x), 120*(y),"image");
-    
-    // myGamePiece1=  new componentBall(116, 116, "./pokeball.png", 120*(x), 120*(y),"image");
-
-    // myGamePiece = new component(30, 30, "pokemon.png", 10, 120,"image");
+    balls[i] = new componentBall(116, 116, "./Images/pokeball.png", 120*(x), 120*(y),"image");
     if(gameover){
         let a=5;
         
      function show(){
         document.getElementById('time').innerText=a--;
      }
+     document.getElementsByTagName('h1')[0].style.width = '100vw' ;
+     document.getElementsByTagName('h1')[0].style.height ='100vh';
+     document.getElementsByTagName('h1')[0].style.fontSize ='xxx-large';
+
+       let cele= document.getElementById("counter")
+       cele.innerHTML="Game Over !!! <br> Your Score Is "+counter+ "<br> New Game Starting in ...";
+
+       cele.style.float="none"
+       
         
-        document.getElementById("counter").innerText="Game Over !!! Your Score Is "+counter+" New Game Starting in ...";
         setInterval(function(){
           show();
         },1000);
         document.getElementsByTagName("canvas")[0].className="hidden";
-        // document.getElementsByTagName("button")[0].className="show";
         document.getElementsByTagName("h1")[0].className="show";
     
      setTimeout(function(){
@@ -105,9 +92,6 @@ let arry = [];
     }, 1000)
     
     
- //  }
-   // myGamePiece2 = new component(40,40, "blue", 30, 100);
-    
 
 
 
@@ -118,15 +102,7 @@ document.getElementsByTagName("h1")[0].className="show";
 
 
 }
-myGamePiece=new component(120, 120, "./pokemon.png", 10, 120,"image");
-
-
-
-
-
-
-
-
+myGamePiece=new component(120, 120, "./Images/pokemon.png", 10, 120,"image");
 
 
 var myGameArea = {
@@ -235,7 +211,6 @@ function updateGameArea() {
             gameover=true;
 
     }}
-   // myGamePiec.update();
      
       
     myGamePiece.update();

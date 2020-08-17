@@ -1,4 +1,6 @@
 body{
+    background-image: url("https://i.pinimg.com/originals/b8/f1/43/b8f1436e7c268706a482876aa13579fd.gif");
+    background-repeat:repeat;
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
@@ -30,8 +32,18 @@ button{
 }
 #counter{
     float: right;
-    
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin-left: 15px;
+  
 }
+#time{
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+
 
 .hidden
 {
