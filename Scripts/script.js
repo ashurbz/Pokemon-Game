@@ -211,6 +211,8 @@ function updateGameArea() {
                count++;
             balls[j].update();
             if( (balls[j].x-myGamePiece.x >-30  && balls[j].x-myGamePiece.x <= 30 &&  balls[j].y-myGamePiece.y <= 30 &&  balls[j].y-myGamePiece.y >-30) ){
+                var sound = new Audio("./Sounds/sound1.mp3");
+                sound.play();
                 
                 balls[j] = "A";
                 counter++;
