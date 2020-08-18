@@ -4,12 +4,7 @@ let gameover=false;
 var myGamePiece;
 let count=0;
 var balls=[20];
-<<<<<<< HEAD
-// var sound =  new Audio("./Sounds/sound1.mp3");
 
-=======
-var sound = new Audio("./Sounds/sound1.mp3");
->>>>>>> 00989c2
 // Start game
 
 function startGame() {
@@ -38,7 +33,7 @@ let arry = [];
     
     
     for(let m = 0; m<=arrx.length;m++){
-    
+      
        if(arrx[m] == x && arry[m] == y){
           console.log(true);
           i--;
@@ -216,12 +211,8 @@ function updateGameArea() {
                count++;
             balls[j].update();
             if( (balls[j].x-myGamePiece.x >-30  && balls[j].x-myGamePiece.x <= 30 &&  balls[j].y-myGamePiece.y <= 30 &&  balls[j].y-myGamePiece.y >-30) ){
-                
-<<<<<<< HEAD
-                // sound.play();
-=======
+                var sound = new Audio("./Sounds/sound1.mp3");
                 sound.play();
->>>>>>> 00989c2
                 
                 balls[j] = "A";
                 counter++;
