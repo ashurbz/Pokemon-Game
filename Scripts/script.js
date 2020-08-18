@@ -34,7 +34,7 @@ let arry = [];
     
     
     for(let m = 0; m<=arrx.length;m++){
-      
+    
        if(arrx[m] == x && arry[m] == y){
           console.log(true);
           i--;
